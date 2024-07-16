@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Self-Talk
 
-## Getting Started
+Practicing conversation is essential for mastering any language, but finding opportunities to practice can be challenging. Language barriers can limit access to valuable content and international opportunities.
 
-First, run the development server:
+## Project Goal
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Our app aims to create an accessible and free platform where anyone can improve their conversation skills in various languages. Using advanced artificial intelligence technology, we provide a safe and interactive environment to practice real conversations through voice chat. The goal is to help users gain confidence, fluency, and stand out in an increasingly globalized world.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+By enabling people from all over the world to practice and refine their communication skills, our project seeks to open doors to new academic, professional, and cultural opportunities. Join us and help build bridges through language!
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## What's Inside?
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+This repository includes the following packages/apps:
 
-## Learn More
+### Apps
 
-To learn more about Next.js, take a look at the following resources:
+- **`web`**: A [Next.js](https://nextjs.org/) application that contains the client-side code.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Technologies Used
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **Next.js**: For the web client.
+- **Tailwind CSS**: For styling.
+- **Shadcn**: For design components.
 
-## Deploy on Vercel
+This app is fully written in [TypeScript](https://www.typescriptlang.org/), ensuring type safety and code quality.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contributing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+We welcome contributions from everyone! Please read our [contributing guide](https://github.com/matheusTA/self-talk/blob/main/CONTRIBUTING.md) to learn how you can help improve Self-Talk.
+
+## Contributors
+
+Thanks goes to all these wonderful people:
+
+<a href="https://github.com/matheusTA/self-talk/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=matheusTA/self-talk" />
+</a>
+
+---
+
+Together, we can break down language barriers and unlock new opportunities for people all over the world.
