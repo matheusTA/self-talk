@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/63e4b42b-2b17-42ce-b36e-d34c12d50bd8" alt="self talk Logo"/>
+</p>
+
 # Self-Talk
 
 Practicing conversation is essential for mastering any language, but finding opportunities to practice can be challenging. Language barriers can limit access to valuable content and international opportunities.
