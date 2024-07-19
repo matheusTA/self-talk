@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/63e4b42b-2b17-42ce-b36e-d34c12d50bd8" alt="self talk Logo"/>
+  <img src="https://github.com/user-attachments/assets/2a9b1743-08e9-4836-8f60-f3840a3de7f5" alt="self talk Logo"/>
 </p>
 
 # Self-Talk
