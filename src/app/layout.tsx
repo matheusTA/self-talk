@@ -15,14 +15,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="mx-auto h-screen w-full max-w-7xl p-2">
+      <body className="mx-auto flex h-screen w-full max-w-7xl flex-col p-2">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           disableTransitionOnChange
         >
           <Header />
-          <main>{children}</main>
+          <main className="h-full">{children}</main>
         </ThemeProvider>
       </body>
     </html>
