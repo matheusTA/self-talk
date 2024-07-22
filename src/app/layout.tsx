@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 
+import Background from "@/components/background";
 import Header from "@/components/header";
 
 export const metadata: Metadata = {
@@ -15,14 +16,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="mx-auto flex h-screen w-full max-w-7xl flex-col p-2">
+      <body className="h-screen">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           disableTransitionOnChange
         >
-          <Header />
-          <main className="h-full">{children}</main>
+          <Background>
+            <div className="mx-auto flex size-full max-w-7xl flex-col p-2">
+              <Header />
+              <div className="size-full">{children}</div>
+            </div>
+          </Background>
         </ThemeProvider>
       </body>
     </html>
