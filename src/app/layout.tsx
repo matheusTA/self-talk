@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 
 import Background from "@/components/background";
 import Header from "@/components/header";
+import { cn } from "@/lib/utils";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Self Talk",
@@ -16,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="h-screen">
+      <body className={cn("h-screen", inter.className)}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
