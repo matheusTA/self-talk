@@ -27,7 +27,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Background>
-            <div className="mx-auto flex size-full max-w-7xl flex-col p-2">
+            <div className="relative mx-auto flex size-full max-w-7xl flex-col p-2">
               <Header />
               <div className="size-full">{children}</div>
             </div>

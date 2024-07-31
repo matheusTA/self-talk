@@ -15,7 +15,7 @@ export default function Header() {
         <ThemeSwitcher />
 
         <Button asChild variant="ghost" size="icon" className="group">
-          <Link href="/settings">
+          <Link href="/settings/keys">
             <GearIcon className="size-5 group-hover:animate-spin-halfway" />
           </Link>
         </Button>

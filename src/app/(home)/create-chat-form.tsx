@@ -47,7 +47,7 @@ export default function CreateChatForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col gap-5"
+        className="flex w-96 flex-col gap-5"
       >
         <FormField
           control={form.control}
@@ -68,8 +68,8 @@ export default function CreateChatForm() {
             control={form.control}
             name="lang"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>In which language will we speak?</FormLabel>
+              <FormItem className="lg:flex-1">
+                <FormLabel>Language</FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
@@ -93,8 +93,8 @@ export default function CreateChatForm() {
             control={form.control}
             name="duration"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>How long will the conversation last?</FormLabel>
+              <FormItem className="lg:flex-1">
+                <FormLabel>Duration</FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
