@@ -1,5 +1,6 @@
 import { LockClosedIcon } from "@radix-ui/react-icons";
-import Link from "next/link";
+
+import SideNavLink from "@/components/side-nav-link";
 
 export default function SettingsLayout({
   children,
@@ -7,18 +8,16 @@ export default function SettingsLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex size-full pt-20">
-      <div className="w-52 space-y-5 border-r p-2">
+    <div className="flex size-full py-8">
+      <div className="w-52 space-y-8 border-r-2 px-2 py-4">
         <h1 className="text-3xl font-semibold">Settings</h1>
 
         <nav>
-          <Link
-            href="/settings/keys"
-            className="flex items-center gap-2 rounded-md p-1.5 text-sm transition-colors hover:bg-accent"
-          >
-            <LockClosedIcon className="size-4" />
-            Keys
-          </Link>
+          <SideNavLink
+            title="Access tokens"
+            href="/settings/access-tokens"
+            Icon={<LockClosedIcon />}
+          />
         </nav>
       </div>
 
