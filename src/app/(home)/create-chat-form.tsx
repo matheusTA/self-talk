@@ -29,8 +29,10 @@ const formSchema = z.object({
   duration: z.string({ required_error: "Please select a duration" }).min(1),
 });
 
+type FormSchema = z.infer<typeof formSchema>;
+
 export default function CreateChatForm() {
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       topic: "",
@@ -39,7 +41,7 @@ export default function CreateChatForm() {
     },
   });
 
-  function onSubmit(data: z.infer<typeof formSchema>) {
+  function onSubmit(data: FormSchema) {
     console.log(data);
   }
 

@@ -14,8 +14,8 @@ export default function SettingsLayout({
 
         <nav>
           <SideNavLink
-            title="Access tokens"
-            href="/settings/access-tokens"
+            title="Access keys"
+            href="/settings/access-keys"
             Icon={<LockClosedIcon />}
           />
         </nav>

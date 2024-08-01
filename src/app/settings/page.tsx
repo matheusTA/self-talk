@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function SettingsPage() {
-  redirect("/settings/access-tokens");
+  redirect("/settings/access-keys");
 }
