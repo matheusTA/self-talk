@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DoubleArrowRightIcon } from "@radix-ui/react-icons";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -32,6 +33,7 @@ const formSchema = z.object({
 type FormSchema = z.infer<typeof formSchema>;
 
 export default function CreateChatForm() {
+  const { push } = useRouter();
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -43,6 +45,7 @@ export default function CreateChatForm() {
 
   function onSubmit(data: FormSchema) {
     console.log(data);
+    push("/chat");
   }
 
   return (

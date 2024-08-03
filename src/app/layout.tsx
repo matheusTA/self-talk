@@ -29,7 +29,7 @@ export default function RootLayout({
           <Background>
             <div className="relative mx-auto flex size-full max-w-7xl flex-col p-2">
               <Header />
-              <div className="size-full">{children}</div>
+              <div className="size-full overflow-hidden">{children}</div>
             </div>
           </Background>
         </ThemeProvider>
