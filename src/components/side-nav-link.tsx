@@ -19,7 +19,7 @@ export default function SideNavLink({ title, href, Icon }: SideNavLinkProps) {
       data-active={isActive}
       className="flex items-center gap-2 rounded-md p-1.5 transition-colors hover:bg-accent data-[active=true]:bg-accent"
     >
-      {!!Icon && <Icon.type {...Icon.props} className="size-[14px]" />}
+      {!!Icon && <Icon.type {...Icon.props} className="size-4" />}
       <span className="text-sm">{title}</span>
     </Link>
   );

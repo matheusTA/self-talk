@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import SpeechRecognitionForm from "./speech-recognition-form";
 
 export default function ChatPage() {
   return (
@@ -62,13 +62,7 @@ export default function ChatPage() {
         <div>message</div>
       </div>
 
-      <div className="flex gap-4">
-        <Button>Gravador</Button>
-
-        <div>
-          <span>lorem ipson aasdasdd asdasdas dasdad asdasdasd</span>
-        </div>
-      </div>
+      <SpeechRecognitionForm />
     </div>
   );
 }
