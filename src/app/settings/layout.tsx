@@ -1,4 +1,4 @@
-import { LockClosedIcon } from "@radix-ui/react-icons";
+import { KeyRound } from "lucide-react";
 
 import SideNavLink from "@/components/side-nav-link";
 
@@ -16,7 +16,7 @@ export default function SettingsLayout({
           <SideNavLink
             title="Access keys"
             href="/settings/access-keys"
-            Icon={<LockClosedIcon />}
+            Icon={<KeyRound />}
           />
         </nav>
       </div>

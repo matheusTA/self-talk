@@ -1,6 +1,6 @@
 "use client";
 
-import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
+import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "./ui/button";
@@ -18,8 +18,8 @@ export default function ThemeSwitcher() {
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon">
-          <SunIcon className="size-4 dark:hidden" />
-          <MoonIcon className="hidden size-4 dark:flex" />
+          <Sun className="size-4 dark:hidden" />
+          <Moon className="hidden size-4 dark:flex" />
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>

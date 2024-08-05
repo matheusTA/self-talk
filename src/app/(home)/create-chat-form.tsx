@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { DoubleArrowRightIcon } from "@radix-ui/react-icons";
+import { ChevronsRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -123,7 +123,7 @@ export default function CreateChatForm() {
 
         <Button type="submit" className="self-end">
           Start
-          <DoubleArrowRightIcon className="ml-2 size-4" />
+          <ChevronsRight className="ml-2 size-4" />
         </Button>
       </form>
     </Form>

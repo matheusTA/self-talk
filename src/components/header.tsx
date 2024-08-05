@@ -1,4 +1,4 @@
-import { GearIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
+import { Github, Settings } from "lucide-react";
 import Link from "next/link";
 
 import Logo from "./logo";
@@ -16,7 +16,7 @@ export default function Header() {
 
         <Button asChild variant="ghost" size="icon" className="group">
           <Link href="/settings">
-            <GearIcon className="size-5 group-hover:animate-spin-halfway" />
+            <Settings className="size-5 group-hover:animate-spin-halfway" />
           </Link>
         </Button>
 
@@ -24,7 +24,7 @@ export default function Header() {
 
         <Button asChild variant="ghost" size="icon">
           <a href="https://github.com/matheusTA/self-talk" target="_blank">
-            <GitHubLogoIcon className="size-5" />
+            <Github className="size-5" />
           </a>
         </Button>
       </div>
