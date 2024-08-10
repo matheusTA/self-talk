@@ -14,11 +14,7 @@ By enabling people from all over the world to practice and refine their communic
 
 ## What's Inside?
 
-This repository includes the following packages/apps:
-
-### Apps
-
-- **`web`**: A [Next.js](https://nextjs.org/) application that contains the client-side code.
+This repository includes the [Next.js](https://nextjs.org/) application:
 
 ### Technologies Used
 
