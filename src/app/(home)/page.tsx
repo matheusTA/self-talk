@@ -5,6 +5,7 @@ import {
   PiggyBank,
   ShieldCheck,
 } from "lucide-react";
+import Link from "next/link";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
@@ -26,11 +27,13 @@ export default function HomePage() {
         </span>
       </div>
 
-      <Button size="lg" className="group relative overflow-hidden">
-        <span>Get started</span>
-        <div className="w-0 translate-x-full pl-0 opacity-0 transition-all duration-200 group-hover:w-5 group-hover:translate-x-0 group-hover:pl-1 group-hover:opacity-100">
-          <ChevronsRight className="size-5" />
-        </div>
+      <Button asChild size="lg">
+        <Link href="/create-chat" className="group relative overflow-hidden">
+          <span>Get started</span>
+          <div className="w-0 translate-x-full pl-0 opacity-0 transition-all duration-200 group-hover:w-5 group-hover:translate-x-0 group-hover:pl-1 group-hover:opacity-100">
+            <ChevronsRight className="size-5" />
+          </div>
+        </Link>
       </Button>
 
       <div className="grid grid-cols-1 grid-rows-4 gap-5 md:grid-cols-2 md:grid-rows-2">
