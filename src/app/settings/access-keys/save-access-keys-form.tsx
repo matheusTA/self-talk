@@ -6,6 +6,14 @@ import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
 import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
   Form,
   FormControl,
   FormField,
@@ -21,6 +29,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
 
 const formSchema = z.object({
   modelProvider: z
@@ -45,55 +54,69 @@ export default function SaveAccessKeysForm() {
   }
 
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col gap-5"
-      >
-        <FormField
-          control={form.control}
-          name="modelProvider"
-          render={({ field }) => (
-            <FormItem className="">
-              <FormLabel>Model provider</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select a model provider" />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  <SelectItem value="OPEN_AI">Open AI</SelectItem>
-                  <SelectItem value="GOOGLE">Google gemini</SelectItem>
-                </SelectContent>
-              </Select>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+    <Card>
+      <CardHeader>
+        <CardTitle>Save your access key</CardTitle>
+        <CardDescription>Choose your AI provider.</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-5">
+        <Separator />
+        <Form {...form}>
+          <form
+            id="save-access-keys-form"
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex flex-col gap-5"
+          >
+            <FormField
+              control={form.control}
+              name="modelProvider"
+              render={({ field }) => (
+                <FormItem className="">
+                  <FormLabel>Model provider</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a model provider" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="OPEN_AI">Open AI</SelectItem>
+                      <SelectItem value="GOOGLE">Google gemini</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-        <FormField
-          control={form.control}
-          name="apiKey"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Api key</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="*********************"
-                  type="password"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <Button type="submit" className="self-end">
+            <FormField
+              control={form.control}
+              name="apiKey"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Api key</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="*********************"
+                      type="password"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </form>
+        </Form>
+      </CardContent>
+      <CardFooter className="flex justify-end gap-2">
+        <Button type="submit" form="save-access-keys-form">
           Save
         </Button>
-      </form>
-    </Form>
+      </CardFooter>
+    </Card>
   );
 }
