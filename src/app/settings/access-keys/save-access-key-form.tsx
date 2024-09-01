@@ -31,6 +31,8 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 
+import DeleteAccessKeyAlertDialog from "./delete-access-key-alert-dialog";
+
 const formSchema = z.object({
   modelProvider: z
     .string({ required_error: "Please select a model provider" })
@@ -40,7 +42,7 @@ const formSchema = z.object({
 
 type FormSchema = z.infer<typeof formSchema>;
 
-export default function SaveAccessKeysForm() {
+export default function SaveAccessKeyForm() {
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -57,7 +59,9 @@ export default function SaveAccessKeysForm() {
     <Card>
       <CardHeader>
         <CardTitle>Save your access key</CardTitle>
-        <CardDescription>Choose your AI provider.</CardDescription>
+        <CardDescription>
+          Select your AI provider and enter your API key below.
+        </CardDescription>
       </CardHeader>
       <CardContent className="space-y-5">
         <Separator />
@@ -97,7 +101,7 @@ export default function SaveAccessKeysForm() {
               name="apiKey"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Api key</FormLabel>
+                  <FormLabel>API key</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="*********************"
@@ -113,6 +117,7 @@ export default function SaveAccessKeysForm() {
         </Form>
       </CardContent>
       <CardFooter className="flex justify-end gap-2">
+        <DeleteAccessKeyAlertDialog />
         <Button type="submit" form="save-access-keys-form">
           Save
         </Button>

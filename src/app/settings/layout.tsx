@@ -1,5 +1,6 @@
 import { KeyRound } from "lucide-react";
 
+import BackNavigationButton from "@/components/back-navigation-button";
 import SideNavLink from "@/components/side-nav-link";
 
 export default function SettingsLayout({
@@ -10,7 +11,10 @@ export default function SettingsLayout({
   return (
     <div className="flex size-full py-8">
       <div className="w-52 space-y-8 border-r-2 px-2 py-4">
-        <h1 className="text-3xl font-semibold">Settings</h1>
+        <div>
+          <BackNavigationButton />
+          <h1 className="text-3xl font-semibold">Settings</h1>
+        </div>
 
         <nav>
           <SideNavLink
