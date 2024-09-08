@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
-import CreateChatForm from "./create-chat-form";
+import CreateChatForm from "./components/create-chat-form";
 
 export default function CreateChatPage() {
   return (

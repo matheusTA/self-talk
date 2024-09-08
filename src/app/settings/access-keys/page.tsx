@@ -2,7 +2,7 @@ import { TriangleAlert } from "lucide-react";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
-import SaveAccessKeyForm from "./save-access-key-form";
+import SaveAccessKeyForm from "./components/save-access-key-form";
 
 export default function AccessKeyPage() {
   return (

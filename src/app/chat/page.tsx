@@ -1,68 +1,13 @@
-import SpeechRecognitionForm from "./speech-recognition-form";
+import MessageList from "./components/message-list";
+import SpeechRecognitionForm from "./components/speech-recognition-form";
 
 export default function ChatPage() {
   return (
-    <div className="flex size-full flex-col">
-      <div className="overflow-auto">
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
-        <div>message</div>
+    <div className="size-full">
+      <div className="flex size-full flex-col">
+        <MessageList />
+        <SpeechRecognitionForm />
       </div>
-
-      <SpeechRecognitionForm />
     </div>
   );
 }
