@@ -14,47 +14,88 @@ export default function MessageList() {
   });
 
   return (
-    <div className="flex size-full flex-col overflow-y-scroll" ref={listRef}>
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
-      <MessageBalloon />
+    <div
+      className="mb-4 flex size-full flex-col gap-5 overflow-y-scroll pb-0"
+      ref={listRef}
+    >
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
+      <MessageBalloon owner="bot" />
+      <MessageBalloon owner="user" />
     </div>
   );
 }
