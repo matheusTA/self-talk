@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -30,30 +32,50 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
+import {
+  AiProviderModel,
+  AiProviderModelEnum,
+  useAiProviderStore,
+} from "@/store/ai-provider";
 
 import DeleteAccessKeyAlertDialog from "./delete-access-key-alert-dialog";
 
 const formSchema = z.object({
-  modelProvider: z
-    .string({ required_error: "Please select a model provider" })
-    .min(1),
-  apiKey: z.string({ required_error: "Please enter a api key" }).min(1),
+  model: z.string().min(1, { message: "Please select a model" }),
+  accessKey: z.string().min(1, { message: "Please enter a api key" }),
 });
 
 type FormSchema = z.infer<typeof formSchema>;
 
 export default function SaveAccessKeyForm() {
+  const { aiProvider, setAiProvider } = useAiProviderStore();
+  const isAiProviderSeted = !!aiProvider;
+
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      apiKey: "",
-      modelProvider: "",
+      model: isAiProviderSeted ? aiProvider.model : "",
+      accessKey: isAiProviderSeted ? aiProvider.accessKey : "",
     },
   });
 
-  function onSubmit(data: FormSchema) {
-    console.log(data);
+  function resetForm() {
+    form.reset({
+      model: "",
+      accessKey: "",
+    });
   }
+
+  function onSubmit(data: FormSchema) {
+    setAiProvider({
+      model: data.model as AiProviderModel,
+      accessKey: data.accessKey,
+    });
+  }
+
+  useEffect(() => {
+    useAiProviderStore.persist.rehydrate();
+  }, []);
 
   return (
     <Card>
@@ -73,22 +95,27 @@ export default function SaveAccessKeyForm() {
           >
             <FormField
               control={form.control}
-              name="modelProvider"
+              name="model"
               render={({ field }) => (
                 <FormItem className="">
-                  <FormLabel>Model provider</FormLabel>
+                  <FormLabel>Model</FormLabel>
                   <Select
+                    disabled={isAiProviderSeted}
+                    value={field.value}
                     onValueChange={field.onChange}
-                    defaultValue={field.value}
                   >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="Select a model provider" />
+                        <SelectValue placeholder="Select a model" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="OPEN_AI">Open AI</SelectItem>
-                      <SelectItem value="GOOGLE">Google gemini</SelectItem>
+                      <SelectItem value={AiProviderModelEnum.OPENAI}>
+                        Open AI
+                      </SelectItem>
+                      <SelectItem value={AiProviderModelEnum.GEMINI}>
+                        Google gemini
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -98,14 +125,15 @@ export default function SaveAccessKeyForm() {
 
             <FormField
               control={form.control}
-              name="apiKey"
+              name="accessKey"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>API key</FormLabel>
+                  <FormLabel>Access key</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="*********************"
                       type="password"
+                      disabled={isAiProviderSeted}
                       {...field}
                     />
                   </FormControl>
@@ -117,10 +145,13 @@ export default function SaveAccessKeyForm() {
         </Form>
       </CardContent>
       <CardFooter className="flex justify-end gap-2">
-        <DeleteAccessKeyAlertDialog />
-        <Button type="submit" form="save-access-keys-form">
-          Save
-        </Button>
+        {isAiProviderSeted ? (
+          <DeleteAccessKeyAlertDialog resetForm={resetForm} />
+        ) : (
+          <Button type="submit" form="save-access-keys-form">
+            Save
+          </Button>
+        )}
       </CardFooter>
     </Card>
   );

@@ -12,10 +12,20 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
+import { useAiProviderStore } from "@/store/ai-provider";
 
-export default function DeleteAccessKeyAlertDialog() {
+interface DeleteAccessKeyAlertDialogProps {
+  resetForm: () => void;
+}
+
+export default function DeleteAccessKeyAlertDialog({
+  resetForm,
+}: DeleteAccessKeyAlertDialogProps) {
+  const { removeAiProvider } = useAiProviderStore();
+
   function onDelete() {
-    console.log("Delete");
+    removeAiProvider();
+    resetForm();
   }
 
   return (
