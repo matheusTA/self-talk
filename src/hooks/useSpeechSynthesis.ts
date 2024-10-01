@@ -14,7 +14,7 @@ export function useSpeechSynthesis(): UseSpeechSynthesis {
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
 
   const startSpeak = useCallback(
-    (text: string, lang: string = "en-US", voiceURI: string) => {
+    (text: string, lang: string, voiceURI: string) => {
       if (utteranceRef.current) {
         window.speechSynthesis.cancel(); // cancel any current speech
       }

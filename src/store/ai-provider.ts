@@ -30,6 +30,6 @@ export const useAiProviderStore = create<State & Actions>()(
       setAiProvider: (aiProvider) => set({ aiProvider }),
       removeAiProvider: () => set({ aiProvider: null }),
     }),
-    { name: "ai-provider", skipHydration: true }
+    { name: "@self-talk-ai-provider", skipHydration: true }
   )
 );

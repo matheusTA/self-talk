@@ -21,28 +21,55 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useSpeechSynthesis } from "@/hooks/useSpeechSynthesis";
+import {
+  ChatConfigDuration,
+  ChatConfigDurationEnum,
+  useChatStore,
+} from "@/store/chat";
 
 const formSchema = z.object({
   topic: z.string({ required_error: "Please enter a topic" }).min(1),
-  lang: z.string({ required_error: "Please select a language" }).min(1),
+  voiceURI: z.string({ required_error: "Please select a language" }).min(1),
   duration: z.string({ required_error: "Please select a duration" }).min(1),
 });
 
 type FormSchema = z.infer<typeof formSchema>;
 
 export default function CreateChatForm() {
+  const { speechSynthesisVoices } = useSpeechSynthesis();
+  const { setConfig } = useChatStore();
   const { push } = useRouter();
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       topic: "",
-      lang: "",
+      voiceURI: "",
       duration: "",
     },
   });
 
+  const findVoiceByURI = (voiceURI: string) => {
+    return speechSynthesisVoices.find((voice) => voice.voiceURI === voiceURI);
+  };
+
   function onSubmit(data: FormSchema) {
-    console.log(data);
+    const voice = findVoiceByURI(data.voiceURI);
+
+    if (!voice) {
+      return;
+    }
+
+    setConfig({
+      topic: data.topic,
+      voice: {
+        lang: voice.lang,
+        name: voice.name,
+        uri: voice.voiceURI,
+      },
+      duration: data.duration as ChatConfigDuration,
+    });
+
     push("/chat");
   }
 
@@ -69,7 +96,7 @@ export default function CreateChatForm() {
 
         <FormField
           control={form.control}
-          name="lang"
+          name="voiceURI"
           render={({ field }) => (
             <FormItem className="lg:flex-1">
               <FormLabel>Language</FormLabel>
@@ -80,8 +107,11 @@ export default function CreateChatForm() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="pt-br">Portugues - Brasil</SelectItem>
-                  <SelectItem value="en-us">English - USA</SelectItem>
+                  {speechSynthesisVoices.map((voice) => (
+                    <SelectItem key={voice.voiceURI} value={voice.voiceURI}>
+                      {voice.name}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
               <FormMessage />
@@ -102,9 +132,15 @@ export default function CreateChatForm() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="SHORT">Short</SelectItem>
-                  <SelectItem value="MEDIUM">Medium</SelectItem>
-                  <SelectItem value="LONG">Long</SelectItem>
+                  <SelectItem value={ChatConfigDurationEnum.SHORT}>
+                    Short
+                  </SelectItem>
+                  <SelectItem value={ChatConfigDurationEnum.MEDION}>
+                    Medium
+                  </SelectItem>
+                  <SelectItem value={ChatConfigDurationEnum.LONG}>
+                    Long
+                  </SelectItem>
                 </SelectContent>
               </Select>
               <FormMessage />

@@ -6,6 +6,7 @@ import { Eye, EyeOff, Volume2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { useSpeechSynthesis } from "@/hooks/useSpeechSynthesis";
+import { useChatStore } from "@/store/chat";
 
 interface MessageBalloonProps {
   message: {
@@ -16,6 +17,7 @@ interface MessageBalloonProps {
 
 export default function MessageBalloon({ message }: MessageBalloonProps) {
   const [isMessageBlur, setIsMessageBlur] = useState(true);
+  const { config } = useChatStore();
   const { isSpeaking, startSpeak } = useSpeechSynthesis();
 
   function handleToggleBlur() {
@@ -23,7 +25,11 @@ export default function MessageBalloon({ message }: MessageBalloonProps) {
   }
 
   function handleStartSpeak() {
-    startSpeak(message.text, "en-US", "Google US English");
+    if (!config) {
+      return;
+    }
+
+    startSpeak(message.text, config.voice.lang, config.voice.uri);
   }
 
   return (
