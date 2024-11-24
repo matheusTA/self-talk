@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 export const ChatConfigDurationEnum = {
   SHORT: "short",
@@ -27,7 +28,12 @@ type Actions = {
   setConfig: (config: ChatConfig) => void;
 };
 
-export const useChatStore = create<State & Actions>()((set) => ({
-  config: null,
-  setConfig: (config) => set({ config }),
-}));
+export const useChatStore = create<State & Actions>()(
+  persist(
+    (set) => ({
+      config: null,
+      setConfig: (config) => set({ config }),
+    }),
+    { name: "@self-talk-chat", skipHydration: true }
+  )
+);

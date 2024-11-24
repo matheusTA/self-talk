@@ -1,10 +1,35 @@
-import { CornerDownLeft, Mic } from "lucide-react";
+"use client";
+
+import { CircleStop, CornerDownLeft, Mic, Trash2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
+import { useSpeechRecognition } from "@/hooks/useSpeechRecognition";
+import { useChatStore } from "@/store/chat";
 
 export default function SpeechRecognitionForm() {
+  const { config } = useChatStore();
+  const {
+    transcript,
+    isListening,
+    startListening,
+    stopListening,
+    resetTranscript,
+  } = useSpeechRecognition();
+
+  const disabledSendMessageButton = !transcript || isListening;
+
+  function handleStartListening() {
+    if (!!config) {
+      startListening(config.voice.lang);
+    }
+  }
+
+  function handleSendMessage() {
+    console.log("Send message", transcript);
+  }
+
   return (
     <Card>
       <CardContent className="p-3">
@@ -13,15 +38,38 @@ export default function SpeechRecognitionForm() {
           placeholder="Speech recognition"
           disabled
           rows={4}
-          value="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+          value={transcript}
         />
       </CardContent>
       <CardFooter className="flex items-center justify-between p-3 pt-0">
-        <Button size="icon" variant="secondary">
-          <Mic className="size-5" />
-        </Button>
+        <div className="flex items-center gap-2">
+          {isListening && (
+            <Button size="icon" variant="secondary" onClick={stopListening}>
+              <CircleStop className="size-5" />
+            </Button>
+          )}
 
-        <Button>
+          {!isListening && (
+            <Button
+              size="icon"
+              variant="secondary"
+              onClick={handleStartListening}
+            >
+              <Mic className="size-5" />
+            </Button>
+          )}
+
+          {(!!transcript || isListening) && (
+            <Button size="icon" variant="secondary" onClick={resetTranscript}>
+              <Trash2 className="size-5" />
+            </Button>
+          )}
+        </div>
+
+        <Button
+          onClick={handleSendMessage}
+          disabled={disabledSendMessageButton}
+        >
           Send message
           <CornerDownLeft className="size-5" />
         </Button>
