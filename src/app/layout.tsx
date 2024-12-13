@@ -6,6 +6,7 @@ import { ThemeProvider } from "next-themes";
 import Background from "@/components/background";
 import Header from "@/components/header";
 import { cn } from "@/lib/utils";
+import AiProviderHydration from "@/store/hydration/ai-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn("h-screen", inter.className)}>
+        <AiProviderHydration />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -54,8 +52,8 @@ export default function SaveAccessKeyForm() {
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      model: isAiProviderSeted ? aiProvider.model : "",
-      accessKey: isAiProviderSeted ? aiProvider.accessKey : "",
+      model: aiProvider?.model || "",
+      accessKey: aiProvider?.accessKey || "",
     },
   });
 
@@ -72,10 +70,6 @@ export default function SaveAccessKeyForm() {
       accessKey: data.accessKey,
     });
   }
-
-  useEffect(() => {
-    useAiProviderStore.persist.rehydrate();
-  }, []);
 
   return (
     <Card>

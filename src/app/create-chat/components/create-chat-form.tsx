@@ -21,6 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { generatePrompt } from "@/functions/generate-prompt";
 import { useSpeechSynthesis } from "@/hooks/useSpeechSynthesis";
 import {
   ChatConfigDuration,
@@ -68,6 +69,11 @@ export default function CreateChatForm() {
         uri: voice.voiceURI,
       },
       duration: data.duration as ChatConfigDuration,
+      prompt: generatePrompt(
+        voice.lang,
+        data.topic,
+        data.duration as ChatConfigDuration
+      ),
     });
 
     push("/chat");

@@ -18,10 +18,17 @@ type ChatConfig = {
     uri: string;
   };
   duration: ChatConfigDuration;
+  prompt: string;
+};
+
+type ChatMessages = {
+  role: "user" | "assistant";
+  content: string;
 };
 
 type State = {
   config: ChatConfig | null;
+  messages: ChatMessages[];
 };
 
 type Actions = {
@@ -32,6 +39,7 @@ export const useChatStore = create<State & Actions>()(
   persist(
     (set) => ({
       config: null,
+      messages: [],
       setConfig: (config) => set({ config }),
     }),
     { name: "@self-talk-chat", skipHydration: true }
