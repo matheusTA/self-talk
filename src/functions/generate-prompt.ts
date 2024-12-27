@@ -2,7 +2,7 @@ import { ChatConfigDuration } from "@/store/chat";
 
 const durationMap: Record<ChatConfigDuration, number> = {
   short: 5,
-  medion: 10,
+  medium: 10,
   long: 15,
 };
 
