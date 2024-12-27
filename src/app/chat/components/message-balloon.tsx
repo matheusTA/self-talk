@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 
+import { CoreMessage } from "ai";
 import { Eye, EyeOff, Volume2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -9,10 +10,7 @@ import { useSpeechSynthesis } from "@/hooks/useSpeechSynthesis";
 import { useChatStore } from "@/store/chat";
 
 interface MessageBalloonProps {
-  message: {
-    owner: "bot" | "user";
-    text: string;
-  };
+  message: CoreMessage;
 }
 
 export default function MessageBalloon({ message }: MessageBalloonProps) {
@@ -25,28 +23,28 @@ export default function MessageBalloon({ message }: MessageBalloonProps) {
   }
 
   function handleStartSpeak() {
-    if (!config) {
+    if (!config || typeof message.content !== "string") {
       return;
     }
 
-    startSpeak(message.text, config.voice.lang, config.voice.uri);
+    startSpeak(message.content, config.voice.lang, config.voice.uri);
   }
 
   return (
     <Card
-      data-owner={message.owner}
-      className="group max-w-xl data-[owner=bot]:mr-auto data-[owner=user]:ml-auto data-[owner=bot]:rounded-tl-none data-[owner=user]:rounded-tr-none"
+      data-owner={message.role}
+      className="group max-w-xl data-[owner=assistant]:mr-auto data-[owner=user]:ml-auto data-[owner=assistant]:rounded-tl-none data-[owner=user]:rounded-tr-none"
     >
       <CardContent className="p-3">
         <p
           data-blur={isMessageBlur}
           className="text-sm data-[blur=false]:blur-0 data-[blur=true]:blur-[2px]"
         >
-          {message.text}
+          {message.content.toString()}
         </p>
       </CardContent>
-      <CardFooter className="flex p-3 group-data-[owner=user]:justify-start group-data-[owner=bot]:justify-end">
-        <div className="flex gap-2 group-data-[owner=bot]:flex-row group-data-[owner=user]:flex-row-reverse">
+      <CardFooter className="flex p-3 group-data-[owner=user]:justify-start group-data-[owner=assistant]:justify-end">
+        <div className="flex gap-2 group-data-[owner=assistant]:flex-row group-data-[owner=user]:flex-row-reverse">
           <Button
             size="icon"
             variant="secondary"
