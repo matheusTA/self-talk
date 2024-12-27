@@ -1,9 +1,10 @@
+import { CoreMessage } from "ai";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 export const ChatConfigDurationEnum = {
   SHORT: "short",
-  MEDION: "medion",
+  MEDIUM: "medium",
   LONG: "long",
 } as const;
 
@@ -21,18 +22,16 @@ type ChatConfig = {
   prompt: string;
 };
 
-type ChatMessages = {
-  role: "user" | "assistant";
-  content: string;
-};
-
 type State = {
   config: ChatConfig | null;
-  messages: ChatMessages[];
+  messages: CoreMessage[];
 };
 
 type Actions = {
+  resetChatStore: () => void;
+  setUpChatStore: (config: ChatConfig, prompt: CoreMessage) => void;
   setConfig: (config: ChatConfig) => void;
+  addMessage: (messages: CoreMessage[]) => void;
 };
 
 export const useChatStore = create<State & Actions>()(
@@ -40,7 +39,11 @@ export const useChatStore = create<State & Actions>()(
     (set) => ({
       config: null,
       messages: [],
+      resetChatStore: () => set({ config: null, messages: [] }),
+      setUpChatStore: (config, prompt) => set({ config, messages: [prompt] }),
       setConfig: (config) => set({ config }),
+      addMessage: (messages) =>
+        set((state) => ({ messages: [...state.messages, ...messages] })),
     }),
     { name: "@self-talk-chat", skipHydration: true }
   )
