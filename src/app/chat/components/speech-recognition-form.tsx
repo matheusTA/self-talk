@@ -1,15 +1,19 @@
 "use client";
 
+import { CoreMessage } from "ai";
 import { CircleStop, CornerDownLeft, Mic, Trash2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { useSpeechRecognition } from "@/hooks/useSpeechRecognition";
+import { GoogleGenerativeAiService } from "@/services/google-generative-ai-service";
+import { useAiProviderStore } from "@/store/ai-provider";
 import { useChatStore } from "@/store/chat";
 
 export default function SpeechRecognitionForm() {
-  const { config } = useChatStore();
+  const { config, messages, addMessage } = useChatStore();
+  const { aiProvider } = useAiProviderStore();
   const {
     transcript,
     isListening,
@@ -26,8 +30,22 @@ export default function SpeechRecognitionForm() {
     }
   }
 
-  function handleSendMessage() {
-    console.log("Send message", transcript);
+  async function handleSendMessage() {
+    if (aiProvider && config) {
+      const newMessage: CoreMessage = {
+        role: "user",
+        content: transcript,
+      };
+
+      const aiResponse = await GoogleGenerativeAiService.continueConversation(
+        aiProvider.accessKey,
+        [...messages, newMessage]
+      );
+
+      addMessage([newMessage, { role: "assistant", content: aiResponse }]);
+
+      resetTranscript();
+    }
   }
 
   return (
