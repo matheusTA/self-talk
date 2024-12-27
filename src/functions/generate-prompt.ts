@@ -1,9 +1,9 @@
-import { ChatConfigDuration } from "@/store/chat";
+import { ChatConfigDuration, ChatConfigDurationEnum } from "@/store/chat";
 
 const durationMap: Record<ChatConfigDuration, number> = {
-  short: 5,
-  medium: 10,
-  long: 15,
+  [ChatConfigDurationEnum.SHORT]: 5,
+  [ChatConfigDurationEnum.MEDIUM]: 10,
+  [ChatConfigDurationEnum.LONG]: 15,
 };
 
 export function generatePrompt(
